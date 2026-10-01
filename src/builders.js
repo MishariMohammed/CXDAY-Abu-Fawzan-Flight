@@ -239,13 +239,13 @@ function queuePane(o) {
 // Gate 23, good path at 4:46: empty seats, one calm agent, the cancelled sign.
 function gatePane() {
   const seats = [12, 22].map(b => Array.from({ length: 8 }, (_, i) => `<div class="seat" style="left:${50 + i * 62}px;bottom:${b}%"></div>`).join('')).join('');
-  const el = h(`<div class="cctv live">
+  const el = h(`<div class="cctv live q">
     <div class="wall"></div><div class="floor"></div>
     <div class="sign" style="left:40px;right:auto;top:100px">GATE 23</div>
     <div class="sign" style="right:40px;top:100px;color:#B91C1C;font-size:22px">SH 1043 · CANCELLED</div>
     ${seats}
     <div class="counter" style="bottom:22%;width:200px;height:110px"></div>
-    <div class="person staff" style="right:96px;bottom:30%"><div class="hd"></div><div class="bd"></div></div>
+    <div class="person staff" style="right:96px;bottom:34%"><div class="hd"></div><div class="bd"></div></div>
     ${camChrome('CAM 03 · GATE 23', '4:46 PM')}</div>`);
   return el;
 }

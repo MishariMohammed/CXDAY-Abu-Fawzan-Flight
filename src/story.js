@@ -463,7 +463,7 @@ SCENES = [
 { id: 'G2', ch: 6, zone: 'good', mode: 'stage', pose: 'think', narr: '12:46 PM · 5 minutes after Ops knew · The truth, first', hud: { clock: T(12, 46), lost: 0, stress: 10 }, run: async (c, el) => {
   const C = STATE.enh.has('C'), E = STATE.enh.has('E');
   const { ph, side } = phoneLayout(el, scrTrip({ src: '<span class="live">Live from Ops</span>', btn: 'Boarding pass ✓' }));
-  side.innerHTML = goalCard() + `<div class="panel tk" style="margin-top:24px;padding:20px 24px;display:flex;gap:12px;align-items:center;opacity:0"><span class="chip">Ops knew · <b>12:41 PM</b></span>${ICON('chev')}<span class="chip">Told me · <b>12:46 PM</b></span></div>`;
+  side.innerHTML = goalCard() + `<div class="panel tk" style="margin-top:24px;padding:20px 24px;display:flex;gap:12px;align-items:center;opacity:0"><span class="chip" style="white-space:nowrap"><span>Ops knew · <b>12:41 PM</b></span></span>${ICON('chev')}<span class="chip" style="white-space:nowrap;color:#15803D"><span>Told me · <b>12:46 PM</b></span></span></div>`;
   bg(fadeIn(c, ph, { y: 30 }));
   await c.hud({ clock: T(12, 46), stress: 15 }, 800);
   const T1 = 'SH 1043 can’t fly today', B1 = 'Technical fault. You’re on SH 1049, 5:40 PM, seat 14A. Your bag moves too.', MB = 'We saw it’s a wedding. Mabrook! You’re first in line.';
