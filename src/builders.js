@@ -195,8 +195,9 @@ function groomEl() {
   return h(`<div class="groom" style="position:relative;width:380px;height:560px;opacity:0">
     <svg viewBox="0 0 380 560" width="380" height="560" style="position:absolute;inset:0" aria-hidden="true">
       <path d="M120 200 L90 560 L290 560 L260 200 Z" fill="#FBFAF6" stroke="#1E1216" stroke-width="3"/>
-      <circle cx="190" cy="110" r="52" fill="#C89A6A"/>
       <path d="M120 98 Q190 20 260 98 L292 230 Q190 196 88 230 Z" fill="#FBFAF6" stroke="#1E1216" stroke-width="3"/>
+      <ellipse cx="190" cy="122" rx="40" ry="48" fill="#C89A6A"/>
+      <path d="M156 140 Q190 182 224 140 Q222 168 190 172 Q158 168 156 140 Z" fill="#2A1A12"/>
       <ellipse cx="190" cy="76" rx="66" ry="14" fill="none" stroke="#14100E" stroke-width="10"/>
     </svg>
     <div class="bw" style="position:absolute;left:10px;top:150px;width:360px;height:420px">${bishtBig()}</div></div>`);

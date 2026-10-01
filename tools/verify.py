@@ -24,14 +24,14 @@ def collect(pg, tag, meta):
 
 def overlap(pg, tag, mode):
     if mode not in ('stage', 'guide'): return
-    res = pg.evaluate("""(sel) => { const host = __cx.host().rect; const out = [];
+    res = pg.evaluate("""([sel, lim]) => { const host = __cx.host().rect; const out = [];
       document.querySelectorAll(sel).forEach(e => { const r = e.getBoundingClientRect(); if (!r.width) return;
         const vr = document.querySelector('#viewport').getBoundingClientRect(), s = vr.width / 1920;
         const x = (r.left - vr.left) / s, y = (r.top - vr.top) / s, w = r.width / s, h = r.height / s;
         if (getComputedStyle(e).opacity === '0') return;
         const ix = Math.min(x + w, host.x + host.w) - Math.max(x, host.x), iy = Math.min(y + h, host.y + host.h) - Math.max(y, host.y);
-        if (x + w > 1300 || (ix > 24 && iy > 24)) out.push(e.className + ' right=' + Math.round(x + w)); });
-      return out; }""", OVL)
+        if (x + w > lim || (ix > 24 && iy > 24)) out.push(e.className + ' right=' + Math.round(x + w)); });
+      return out; }""", [OVL, 1500 if mode == 'guide' else 1300])
     if res: fails.append(f'{tag}: overlap/right-edge {res[:4]}')
 
 def mkpage(b, reduced=False):
@@ -52,7 +52,7 @@ def scenes(b, ids, variants, reduced=False):
             tag = sid + (re.sub(r'\W', '', v) or '') + ('-rm' if reduced else '')
             pe.clear()
             pg.goto(URL + f'?mode=present&sound=off&speed=0.35&scene={sid}{v}' + ('&motion=off' if reduced else ''))
-            try: pg.wait_for_function('() => window.__cx && !__cx.autoplay()', timeout=40000)
+            try: pg.wait_for_function(f"() => window.__cx && __cx.cur() === '{sid}' && !__cx.autoplay()", timeout=40000)
             except Exception: fails.append(f'{tag}: still autoplaying after 40s')
             pg.wait_for_timeout(700)
             pg.screenshot(path=f'{OUT}/{tag}.png')

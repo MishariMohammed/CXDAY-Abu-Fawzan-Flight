@@ -522,7 +522,7 @@ SCENES = [
   bg(fadeIn(c, ph, { y: 20 }));
   bg(c.hud({ clock: T(12, 48), stress: 8 }, 600));
   sfx('chime');
-  const stamp = h(`<div class="stamp good rebook" style="position:relative;display:inline-block;left:auto;top:auto;margin:40px 0 0 30px;font-size:84px;padding:14px 40px 6px;border-width:8px">REBOOKED</div>`); side.appendChild(stamp);
+  const stamp = h(`<div class="stamp good rebook" style="position:relative;display:inline-block;left:auto;top:auto;margin:48px 0 0 10px;font-size:68px;padding:12px 34px 6px;border-width:7px">REBOOKED</div>`); side.appendChild(stamp);
   await c.anim(stamp, [{ opacity: 0, transform: 'rotate(-6deg) scale(1.8)' }, { opacity: 1, transform: 'rotate(-6deg) scale(1)' }], { duration: 320, easing: EASE.over });
   M.fx('bounce');
   const bag = h(`<div class="panel goal" style="margin-top:40px">${SQ('tag')}<div><div class="gl">Bag SH 447731</div><div class="gv" style="font-size:26px"><s class="old">SH 1043</s> → <b class="nt" style="display:inline-block;color:var(--ok)">${p ? 'Partner 3:30 PM' : 'SH 1049'}</b></div></div></div>`);
@@ -710,12 +710,12 @@ async function enhancementPicker(c, el) {
 async function impact(c, el) {
   const p = STATE.fly === 'p', e = STATE.enh, F = e.has('F'), D = e.has('D'), r = recommend();
   const rows = [
-    ['First message', '4 h 17 min after Ops', '5 min after Ops'],
+    ['First message after Ops', '4 h 17 min', '5 min'],
     ['Time at the airport', '6 h 45 min', p ? (F ? '1 h' : '1 h 15 min') : (F ? '1 h 10 min' : '1 h 30 min')],
     ['Queues & holds', '3 h 45 min', F ? 'none' : '4 min'],
     ['Landed in Jeddah', '10:15 PM', p ? '5:15 PM' : '7:25 PM'],
     ['The bag', '3 days late', D ? 'tracked · 12 min' : 'Belt 6 · 12 min'],
-    ['Compensation*', 'SAR 150 · day 9', 'SAR 300 · same day'],
+    ['Compensation*', 'SAR 150 · day 9', 'SAR 300 · day 0'],
     ['Stress peak', '100', String(Math.round(STATE.goodPeak))],
     ['The zaffa', `${ICON('x')} Missed`, `${ICON('check')} Front row`],
     ['Extras added', '—', [...e].map(id => ENHANCEMENTS.find(x => x.id === id).t).join(', ') || 'none'],
